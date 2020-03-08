@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jby.mybatisTest2.dao.IAccountDao2">
+
+    <!-- 定义封装account和user的resultMap -->
+    <resultMap id="accountUserMap" type="account2">
+        <id property="id" column="id"></id>
+        <result property="uid" column="uid"></result>
+        <result property="money" column="money"></result>
+<!--        &lt;!&ndash; 一对一的关系映射：配置封装user的内容&ndash;&gt;-->
+<!--        <association property="user" javaType="user2">-->
+<!--            <id property="id" column="id"></id>-->
+<!--            <result column="username" property="username"></result>-->
+<!--            <result column="address" property="address"></result>-->
+<!--            <result column="sex" property="sex"></result>-->
+<!--            <result column="birthday" property="birthday"></result>-->
+<!--        </association>-->
+        <!-- 一对一的关系映射：配置封装user的内容 使用懒加载-->
+        <association property="user" javaType="user2" column="uid" select="com.jby.mybatisTest2.dao.IUserDao2.findById" fetchType="eager">
+            <id property="id" column="id"></id>
+            <result column="username" property="username"></result>
+            <result column="address" property="address"></result>
+            <result column="sex" property="sex"></result>
+            <result column="birthday" property="birthday"></result>
+        </association>
+    </resultMap>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="accountUserMap">
+       <!-- select u.* , a.id as aid,a.uid , a.money from account a , user u where u.id = a.uid;-->
+       select * from account
+    </select>
+
+    <!--查询所有账户同时包含用户名和地址信息-->
+    <select id="findAllAccount" resultType="accountuser2">
+        select a.*,u.username,u.address from account a , user u where u.id = a.uid;
+    </select>
+    <!-- 根据用户id查询账户列表 -->
+    <select id="findAccountByUid" resultType="account2">
+        select * from account where uid = #{uid}
+    </select>
+
+</mapper>
