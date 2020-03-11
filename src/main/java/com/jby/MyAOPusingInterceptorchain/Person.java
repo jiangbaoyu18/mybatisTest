@@ -1,4 +1,6 @@
 package com.jby.MyAOPusingInterceptorchain;
 
-public class Person {
+public interface Person {
+
+     String getName();
 }

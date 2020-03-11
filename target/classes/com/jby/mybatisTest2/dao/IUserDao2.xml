@@ -12,11 +12,11 @@
         <result property="sex" column="sex"></result>
         <result property="birthday" column="birthday"></result>
         <!-- 配置user对象中accounts集合的映射 -->
-<!--        <collection property="accounts" ofType="account2">-->
-<!--            <id column="aid" property="id"></id>-->
-<!--            <result column="uid" property="uid"></result>-->
-<!--            <result column="money" property="money"></result>-->
-<!--        </collection>-->
+        <!--        <collection property="accounts" ofType="account2">-->
+        <!--            <id column="aid" property="id"></id>-->
+        <!--            <result column="uid" property="uid"></result>-->
+        <!--            <result column="money" property="money"></result>-->
+        <!--        </collection>-->
         <!-- 配置user对象中accounts集合的映射  对于usr关联的accounts属性，使用懒加载
              collection 标签中的column指定了 select标签中查询语句所使用的参数
         -->

@@ -18,7 +18,7 @@
 <!--            <result column="birthday" property="birthday"></result>-->
 <!--        </association>-->
         <!-- 一对一的关系映射：配置封装user的内容 使用懒加载-->
-        <association property="user" javaType="user2" column="uid" select="com.jby.mybatisTest2.dao.IUserDao2.findById">
+        <association property="user" javaType="user2" column="uid" select="com.jby.mybatisTest2.dao.IUserDao2.findById" fetchType="eager">
             <id property="id" column="id"></id>
             <result column="username" property="username"></result>
             <result column="address" property="address"></result>

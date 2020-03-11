@@ -62,8 +62,6 @@ public interface IUserDao {
             " )" +
             "</script>" )
     @ResultMap("userMap")
-    @Options
-
     List<User4> findUserInIds( QueryVo queryvo);
 
 
